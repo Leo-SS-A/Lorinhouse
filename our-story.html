@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - LorinHouse</title>
+    <style>
+        /* 全局样式复用 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            color: #1A1A1A;
+            background-color: #F0F0F0;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button, .btn {
+            cursor: pointer;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 导航栏样式 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #F0F0F0;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #C9B071;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #F0F0F0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #C9B071;
+        }
+
+        .nav-cta {
+            background-color: #C9B071;
+            color: #1A1A1A;
+        }
+
+        .nav-cta:hover {
+            background-color: #b89e65;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: #F0F0F0;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* 页面头部 */
+        .page-header {
+            padding: 180px 0 80px;
+            text-align: center;
+            background-color: #1A1A1A;
+            color: #F0F0F0;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #C9B071;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #E0E0E0;
+        }
+
+        /* 品牌故事内容 */
+        .story-content-section {
+            padding: 80px 0;
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+
+        .story-content.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .story-img {
+            height: 500px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .story-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-text h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #1A1A1A;
+        }
+
+        .story-text p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .values-section {
+            padding: 80px 0;
+            background-color: #1A1A1A;
+            color: #F0F0F0;
+        }
+
+        .values-section h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #C9B071;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .value-card i {
+            font-size: 48px;
+            color: #C9B071;
+            margin-bottom: 25px;
+        }
+
+        .value-card h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .value-card p {
+            color: #B0B0B0;
+            line-height: 1.8;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #1A1A1A;
+            color: #F0F0F0;
+            padding: 60px 0 20px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .footer-logo span {
+            color: #C9B071;
+        }
+
+        .footer-about p {
+            color: #B0B0B0;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .footer-links ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: #B0B0B0;
+        }
+
+        .footer-links a:hover {
+            color: #C9B071;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333333;
+            color: #B0B0B0;
+            font-size: 14px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 992px) {
+            .story-content, .story-content.reverse {
+                grid-template-columns: 1fr;
+            }
+            .story-img {
+                height: 400px;
+            }
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .page-header h1 {
+                font-size: 32px;
+            }
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Lorin<span>House</span></a>
+                <ul class="nav-links">
+                    <li><a href="collection.html">Collection</a></li>
+                    <li><a href="our-story.html" style="color: #C9B071;">Our Story</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="custom.html">Custom</a></li>
+                </ul>
+                <a href="contact.html" class="btn nav-cta">Inquire Now</a>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 页面头部 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Story</h1>
+            <p>From humble beginnings to global recognition, our journey is rooted in a passion for marble craftsmanship.</p>
+        </div>
+    </section>
+
+    <!-- 品牌故事内容 -->
+    <section class="story-content-section">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-img">
+                    <img src="https://picsum.photos/id/174/1000/1000" alt="Our Founding">
+                </div>
+                <div class="story-text">
+                    <h2>Our Founding</h2>
+                    <p>LorinHouse was founded in 2010 by master craftsman Lorenzo Bianchi, whose family has been working with marble for three generations. What began as a small workshop in Tuscany has grown into an internationally recognized brand, known for our commitment to quality and timeless design.</p>
+                    <p>Lorenzo's vision was simple: to create marble furniture that honors the natural beauty of the stone while incorporating modern design sensibilities. He believed that marble furniture should not just be functional, but a work of art that tells a story and lasts for generations.</p>
+                    <p>Today, we remain true to that vision, combining traditional Italian craftsmanship with contemporary design to create pieces that elevate any space.</p>
+                </div>
+            </div>
+
+            <div class="story-content reverse">
+                <div class="story-text">
+                    <h2>Our Craftsmanship</h2>
+                    <p>At LorinHouse, every piece is crafted by hand by our team of skilled artisans, each with at least 10 years of experience working with marble. We source only the finest natural marble from quarries in Italy, Greece, and Spain, ensuring that each slab meets our rigorous quality standards.</p>
+                    <p>Our process begins with selecting the perfect marble slab, taking into account the veining, color, and texture to ensure it's suited for its intended use. The slab is then cut, shaped, and polished using a combination of traditional hand tools and modern machinery to achieve the perfect finish.</p>
+                    <p>Each piece undergoes multiple quality checks throughout the production process, and only when it meets our exacting standards is it deemed ready for our customers.</p>
+                </div>
+                <div class="story-img">
+                    <img src="https://picsum.photos/id/177/1000/1000" alt="Our Craftsmanship">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 品牌价值观 -->
+    <section class="values-section">
+        <div class="container">
+            <h2>Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-gem"></i>
+                    <h3>Quality</h3>
+                    <p>We never compromise on quality, using only the finest materials and employing the most skilled craftsmen to create furniture that stands the test of time.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainability</h3>
+                    <p>We source our marble from responsibly managed quarries and use eco-friendly production methods to minimize our environmental impact.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Passion</h3>
+                    <p>Every piece we create is made with passion and care, reflecting our deep appreciation for the natural beauty of marble and the art of craftsmanship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Lorin<span>House</span></div>
+                    <p>Timeless marble furniture crafted with passion and precision, elevating your living spaces with enduring elegance.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="collection.html">Collection</a></li>
+                        <li><a href="our-story.html">Our Story</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="custom.html">Custom Orders</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <ul style="display: flex; flex-direction: row; gap: 15px;">
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LorinHouse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

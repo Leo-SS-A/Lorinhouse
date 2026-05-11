@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection - LorinHouse</title>
+    <style>
+        /* 复用全局样式，保持视觉统一 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            color: #1A1A1A;
+            background-color: #F0F0F0;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button, .btn {
+            cursor: pointer;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 导航栏样式（和首页一致） */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #F0F0F0;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #C9B071;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #F0F0F0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #C9B071;
+        }
+
+        .nav-cta {
+            background-color: #C9B071;
+            color: #1A1A1A;
+        }
+
+        .nav-cta:hover {
+            background-color: #b89e65;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: #F0F0F0;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* 页面头部 */
+        .page-header {
+            padding: 180px 0 80px;
+            text-align: center;
+            background-color: #1A1A1A;
+            color: #F0F0F0;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #C9B071;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #E0E0E0;
+        }
+
+        /* 产品详情区 */
+        .product-detail-section {
+            padding: 80px 0;
+        }
+
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid #DDD;
+        }
+
+        .product-detail:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .product-detail-img {
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .product-detail-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-detail-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-detail-info h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1A1A1A;
+        }
+
+        .product-detail-info .price {
+            font-size: 24px;
+            color: #C9B071;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .product-detail-info p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .product-detail-info ul {
+            margin-bottom: 30px;
+        }
+
+        .product-detail-info li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-detail-info li i {
+            color: #C9B071;
+        }
+
+        .inquire-btn {
+            background-color: #1A1A1A;
+            color: #F0F0F0;
+        }
+
+        .inquire-btn:hover {
+            background-color: #C9B071;
+            color: #1A1A1A;
+        }
+
+        /* 页脚样式（和首页一致） */
+        footer {
+            background-color: #1A1A1A;
+            color: #F0F0F0;
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .footer-logo span {
+            color: #C9B071;
+        }
+
+        .footer-about p {
+            color: #B0B0B0;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .footer-links ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: #B0B0B0;
+        }
+
+        .footer-links a:hover {
+            color: #C9B071;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333333;
+            color: #B0B0B0;
+            font-size: 14px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 992px) {
+            .product-detail {
+                grid-template-columns: 1fr;
+            }
+            .product-detail-img {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .page-header h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Lorin<span>House</span></a>
+                <ul class="nav-links">
+                    <li><a href="collection.html" style="color: #C9B071;">Collection</a></li>
+                    <li><a href="our-story.html">Our Story</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="custom.html">Custom</a></li>
+                </ul>
+                <a href="contact.html" class="btn nav-cta">Inquire Now</a>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 页面头部 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Marble Collection</h1>
+            <p>Each piece is meticulously crafted from the finest natural marble, combining timeless design with exceptional craftsmanship.</p>
+        </div>
+    </section>
+
+    <!-- 产品详情区 -->
+    <section class="product-detail-section">
+        <div class="container">
+            <!-- 餐桌详情 -->
+            <div class="product-detail" id="dining-table">
+                <div class="product-detail-img">
+                    <img src="https://picsum.photos/id/225/1000/1000" alt="Marble Dining Table">
+                </div>
+                <div class="product-detail-info">
+                    <h2>Italian Marble Dining Table</h2>
+                    <div class="price">$2,899 - $4,599</div>
+                    <p>Crafted from premium Italian Carrara marble, this dining table features a polished finish and solid oak base. The natural veining of the marble ensures each piece is unique, making it a stunning centerpiece for your dining room.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Available in round, rectangular, and square shapes</li>
+                        <li><i class="fas fa-check"></i> Custom sizes available (6-12 seats)</li>
+                        <li><i class="fas fa-check"></i> Polished or honed marble finish options</li>
+                        <li><i class="fas fa-check"></i> Solid wood or metal base options</li>
+                        <li><i class="fas fa-check"></i> Scratch and stain resistant sealant</li>
+                    </ul>
+                    <a href="contact.html" class="btn inquire-btn">Inquire About This Product</a>
+                </div>
+            </div>
+
+            <!-- 茶几详情 -->
+            <div class="product-detail" id="coffee-table">
+                <div class="product-detail-img">
+                    <img src="https://picsum.photos/id/200/1000/1000" alt="Marble Coffee Table">
+                </div>
+                <div class="product-detail-info">
+                    <h2>Art Deco Marble Coffee Table</h2>
+                    <div class="price">$1,799 - $2,999</div>
+                    <p>Inspired by Art Deco design, this coffee table features a thick marble top with beveled edges and a hand-forged metal base. The contrast between the cool marble and warm metal creates a sophisticated look for any living space.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Available in white, black, and green marble</li>
+                        <li><i class="fas fa-check"></i> 36" or 42" diameter round top</li>
+                        <li><i class="fas fa-check"></i> Brass, bronze, or nickel metal finish</li>
+                        <li><i class="fas fa-check"></i> Adjustable levelers for uneven floors</li>
+                        <li><i class="fas fa-check"></i> Protective felt pads to prevent scratches</li>
+                    </ul>
+                    <a href="contact.html" class="btn inquire-btn">Inquire About This Product</a>
+                </div>
+            </div>
+
+            <!-- 玄关台详情 -->
+            <div class="product-detail" id="console-table">
+                <div class="product-detail-img">
+                    <img src="https://picsum.photos/id/180/1000/1000" alt="Marble Console Table">
+                </div>
+                <div class="product-detail-info">
+                    <h2>Modern Marble Console Table</h2>
+                    <div class="price">$1,999 - $3,299</div>
+                    <p>This minimalist console table features a floating marble top and slim metal legs, creating an airy, modern silhouette. Perfect for entryways, hallways, or as a sofa table, it adds a touch of luxury to any space.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 48", 60", or 72" length options</li>
+                        <li><i class="fas fa-check"></i> Thickness: 1.5" or 2" marble top</li>
+                        <li><i class="fas fa-check"></i> Single or double tier design</li>
+                        <li><i class="fas fa-check"></i> Wall-mounted or freestanding options</li>
+                        <li><i class="fas fa-check"></i> Anti-tip safety hardware included</li>
+                    </ul>
+                    <a href="contact.html" class="btn inquire-btn">Inquire About This Product</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Lorin<span>House</span></div>
+                    <p>Timeless marble furniture crafted with passion and precision, elevating your living spaces with enduring elegance.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="collection.html">Collection</a></li>
+                        <li><a href="our-story.html">Our Story</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="custom.html">Custom Orders</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <ul style="display: flex; flex-direction: row; gap: 15px;">
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LorinHouse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

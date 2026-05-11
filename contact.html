@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - LorinHouse</title>
+    <style>
+        /* 全局样式复用 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            color: #1A1A1A;
+            background-color: #F0F0F0;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button, .btn {
+            cursor: pointer;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 导航栏样式 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #F0F0F0;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #C9B071;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #F0F0F0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #C9B071;
+        }
+
+        .nav-cta {
+            background-color: #C9B071;
+            color: #1A1A1A;
+        }
+
+        .nav-cta:hover {
+            background-color: #b89e65;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: #F0F0F0;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* 页面头部 */
+        .page-header {
+            padding: 180px 0 80px;
+            text-align: center;
+            background-color: #1A1A1A;
+            color: #F0F0F0;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #C9B071;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #E0E0E0;
+        }
+
+        /* 联系内容区 */
+        .contact-section {
+            padding: 80px 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info {
+            padding: 20px;
+        }
+
+        .contact-info h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #1A1A1A;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            color: #C9B071;
+            margin-top: 5px;
+        }
+
+        .contact-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-item a {
+            color: #C9B071;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .business-hours h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .business-hours ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #666;
+        }
+
+        .business-hours li {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .contact-form {
+            background-color: #FFFFFF;
+            padding: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        .contact-form h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #1A1A1A;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #333333;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #DDDDDD;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #C9B071;
+        }
+
+        .form-btn {
+            background-color: #C9B071;
+            color: #1A1A1A;
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .form-btn:hover {
+            background-color: #b89e65;
+        }
+
+        /* 地图区域 */
+        .map-section {
+            padding: 80px 0;
+            background-color: #1A1A1A;
+        }
+
+        .map-section h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: #C9B071;
+        }
+
+        .map-container {
+            height: 400px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F0F0F0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #1A1A1A;
+            color: #F0F0F0;
+            padding: 60px 0 20px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .footer-logo span {
+            color: #C9B071;
+        }
+
+        .footer-about p {
+            color: #B0B0B0;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .footer-links ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: #B0B0B0;
+        }
+
+        .footer-links a:hover {
+            color: #C9B071;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333333;
+            color: #B0B0B0;
+            font-size: 14px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .page-header h1 {
+                font-size: 32px;
+            }
+            .contact-form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Lorin<span>House</span></a>
+                <ul class="nav-links">
+                    <li><a href="collection.html">Collection</a></li>
+                    <li><a href="our-story.html">Our Story</a></li>
+                    <li><a href="contact.html" style="color: #C9B071;">Contact</a></li>
+                    <li><a href="custom.html">Custom</a></li>
+                </ul>
+                <a href="#contact-form" class="btn nav-cta">Send Inquiry</a>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 页面头部 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We're here to answer your questions and help you find the perfect marble furniture for your home.</p>
+        </div>
+    </section>
+
+    <!-- 联系内容区 -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3>Email</h3>
+                                <p>General Inquiries: <a href="mailto:info@lorinhouse.com">info@lorinhouse.com</a></p>
+                                <p>Sales: <a href="mailto:sales@lorinhouse.com">sales@lorinhouse.com</a></p>
+                                <p>Custom Orders: <a href="mailto:custom@lorinhouse.com">custom@lorinhouse.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h3>WhatsApp / Phone</h3>
+                                <p>USA: <a href="tel:+18001234567">+1 (800) 123-4567</a></p>
+                                <p>Europe: <a href="tel:+390551234567">+39 055 1234567</a></p>
+                                <p>Available 9AM - 6PM EST / CET</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h3>Showroom & Office</h3>
+                                <p>New York Showroom: 123 Design Street, New York, NY 10001, USA</p>
+                                <p>Italian Workshop: Via dell'Arte 45, 50123 Florence, Italy</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="business-hours">
+                        <h3>Business Hours</h3>
+                        <ul>
+                            <li>Monday - Friday: <span>9:00 AM - 6:00 PM</span></li>
+                            <li>Saturday: <span>10:00 AM - 4:00 PM</span></li>
+                            <li>Sunday: <span>Closed</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="contact-form" id="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (800) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Inquiry Type</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select an option</option>
+                                <option value="product">Product Inquiry</option>
+                                <option value="custom">Custom Order Request</option>
+                                <option value="showroom">Showroom Visit</option>
+                                <option value="wholesale">Wholesale Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Please provide details about your inquiry..."></textarea>
+                        </div>
+                        <button type="submit" class="btn form-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地图区域 -->
+    <section class="map-section">
+        <div class="container">
+            <h2>
